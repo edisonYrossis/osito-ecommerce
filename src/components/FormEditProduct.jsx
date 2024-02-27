@@ -8,6 +8,7 @@ import ProductOptions from '../components/ProductOptions'
 import { product_weight_list } from '../data/main_p_weight'
 import ProductCard from '../components/ProductCard'
 import {calcPrice, dollarToDom} from '../helpers/calculatePrice'
+import Swal from 'sweetalert2';
 
 
 function FormEditProduct({}) {
@@ -210,11 +211,20 @@ const handleProductGainChange = (e) => {
      
            // Realizar una actualización utilizando el método update
          await updateDoc(productRef, newProduct);
-         alert('producto actualizado :)')
+        
+         Swal.fire({
+          title: "Supeeeer!",
+          text: "Producto actualizado satisfactoriamente ;)",
+          icon: "success"
+        })
 
         setHandleUpdateBtn(false)
         } catch (error) {
-          console.error('Error al actualizar el producto:', error.message);
+          Swal.fire({
+            icon: "error",
+            title: "Ocurrio un error.",
+            text: error.message,
+          });
         }
         
         

@@ -53,17 +53,21 @@ const OrderSheet = forwardRef(({confirmOrder, orderID},ref) => {
       <tr >
         <th className="text-xs">ID</th>
         <th className="text-xs">Producto</th>
+        <th className="text-xs text-center">Opcion</th>
+        <th className="text-xs text-center">Precio</th>
         <th className="text-xs text-right">Cant.</th>
-        <th className="text-xs text-right">Precio</th>
+        <th className="text-xs text-right">Subtotal</th>
       </tr>
     </thead>
     <tbody>
       {cartItems.map((item) => (
         <tr className='border-b-2 border-transparent' key={item.cart_item_id}>
-        <td className='text-xs text-left pr-1'>{item.product_id}</td>  
+        <td className='text-xs text-left pr-1'>{item.product_id.toString().substring(0, 8)}</td>  
           <td className='text-xs text-right px-2'>{item.name}</td>
+          <td className='text-xs text-center px-2'>{item.options}</td>
+          <td className='text-xs text-left'>{dollarToDom(item.price)}</td>
           <td className='text-xs'>{item.quantity}</td>
-          <td className='text-xs text-right pl-3'>{dollarToDom(item.price)}</td>
+          <td className='text-xs text-right pl-2'>{dollarToDom(item.price * item.quantity)}</td>
         </tr>
       ))}
     </tbody>

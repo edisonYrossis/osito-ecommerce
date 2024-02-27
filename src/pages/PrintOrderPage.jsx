@@ -8,6 +8,8 @@ import { UserCartContext } from '../context/UserCartContext';
 import  leftImg from '../assets/left-arrow.png'
 
 import { NavLink } from 'react-router-dom';
+import nyanCatGif from '../assets/nyan-cat.gif'
+import Swal from 'sweetalert2'
 
 
 function PrintOrderPage() {
@@ -58,39 +60,76 @@ function PrintOrderPage() {
         };
 
     const handleConfirmOrder = async () => {
-        const isOrderConfirm = confirm('Estas seguro que quieres confirmar tu orden? no podras deshacer esta accion :(')
-
-        if (!user || !userNum || !userMail){
-                alert('Hay campos por rellenar :(')
-                return
-              }
-
-            if(isOrderConfirm){
-                 try{
-            const db = getFirestore(app)
-              const collectionref = collection(db, 'ordenes')
-              const docref = await addDoc(collectionref, {
-                user_data: {
-                user: user,
-                mail: userMail,
-                num:  userNum
-                },
-                order_id: orderID,
-                order_type: orderShipping.order_type,
-                order_ubication: orderShipping.order_ubication,
-                order_items: cartItems,
-                amount: totalAmount,
-                order_date: new Date().toLocaleDateString()
-               
-              })
-              setConfirmOrder(true)
-              alert('Orden confirmada Correctamente. Descargala para evidenciar tu orden :)')
-             }catch(e){
-          alert('No se agrego la orden, intentalo mas tarde :(', e.message)
-             }
-            }else {
-                alert('Tu orden no se confirmo.')
+        Swal.fire({
+          title: "Estas seguro que quieres confirmar tu orden?",
+          text: 'No podras deshacer esta accion',
+          width: 450,
+          showDenyButton: false,
+          showCancelButton: true,
+          confirmButtonText: "Confirmar",
+        }).then( async (result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            if (!user || !userNum || !userMail){
+              Swal.fire({
+                icon: "error",
+                title: "Transaccion Cancelada",
+                width: 400,
+                text: "Faltan campos por llenar :(",
+              });
+              return
             }
+               try{
+          const db = getFirestore(app)
+            const collectionref = collection(db, 'ordenes')
+            const docref = await addDoc(collectionref, {
+              user_data: {
+              user: user,
+              mail: userMail,
+              num:  userNum
+              },
+              order_id: orderID,
+              order_type: orderShipping.order_type,
+              order_ubication: orderShipping.order_ubication,
+              order_items: cartItems,
+              amount: totalAmount,
+              order_date: new Date().toLocaleDateString()
+             
+            })
+            setConfirmOrder(true)
+            Swal.fire({
+              title: "Orden confirmada satisfactoriamente",
+              width: 400,
+              padding: "1em",
+              color: "#008000",
+              background: "#fff",
+              icon: 'success',
+              backdrop: `
+              rgba(0, 0, 123, 0.4),
+            `
+
+            });
+           }catch(e){
+            Swal.fire({
+              icon: "error",
+              title: "Ha ocurrido un error",
+              text: `Intetalo mas tarde o comunicate con nosotros. ${e.message}`,
+             
+            });
+          }
+          } else if (!result.isConfirmed) {
+           
+            Swal.fire({
+              icon: "error",
+              title: "Transaccion Cancelada",
+              width: 400,
+              text: "No se confirma la orden!",
+            });
+            return;
+          }
+          
+        });
+              
  }
 
 
@@ -98,15 +137,16 @@ function PrintOrderPage() {
     <div className='relative h-screen flex flex-col gap-2 justify-center
     items-center w-screen py-12'>
 
-<div className='flex w-full mt-40'>
+<div className=' relative flex w-full'>
 
-<section className='flex w-full justify-between items-center h-24 px-4' >
+<div className='fixed top-0 w-full'>
+  <section className='flex w-full justify-between items-center h-24 px-4' >
   <NavLink to={'/cart'} className='flex gap-1 items-center'> <img src={leftImg} alt="atras" className='w-7 h-7'/> atras </NavLink>
 
-
-  <NavLink to={'/'} className='flex items-center drop-shadow-xl py-1 px-1'> <img src="/public/big_logo.png" alt="left" className='w-32 h-32'/> </NavLink>
+  <h1 className='font-bold text-1xl pr-8'>Confirma Tu Orden</h1>
   
   </section>
+</div>
 
   </div>
 

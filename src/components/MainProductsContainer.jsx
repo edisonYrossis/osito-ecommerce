@@ -2,50 +2,15 @@ import {useContext, useEffect, useState} from 'react'
 import {FaSpinner} from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 import {productsContext} from '../context/ProductsContext'
-import {UserCartContext} from '../context/UserCartContext'
 import ProductCard from './ProductCard'
+
 
 
 function MainProductsContainer({query, findProducts }) {
 
-  const {cartItems, addToCart} = useContext(UserCartContext)
   const navigate = useNavigate()
  const { productsList, calcPrice, dollarToDom } = useContext(productsContext)
  const [loader, setLoader] = useState(true)
-    
- const handleAddToCart = (p) => {
- 
-  const isProductAdded = cartItems.some(item => item.product_id === p.id && item.options === selectedOption);
-  if (isProductAdded) {
-    const confirmed = confirm('Este producto ya está en tu carrito, ¿quieres añadir otro mas?');
-    
-    if (!confirmed) {
-      // El usuario ha cancelado, no hacemos nada
-      alert('No se ha añadido :(')
-      return;
-    }
-
-    // El usuario confirmó, actualizamos la cantidad
-    updateCartItemQuantity(p.id, selectedOption, productQuantity);
-    alert('Se ha añadido nuevamente :)')
-  } else {
-    // El producto no está en el carrito, lo añadimos
-    addToCart({
-      cart_item_id: cartItems.length + p.id,
-      product_id: p.id,
-      name: p.name,
-      description: p.description,
-      price: dollarToDom(newPrice),
-      URL: p.URL,
-      options: selectedOption,
-      quantity: productQuantity,
-      product_link: productLink
-    });
-    alert('Se ha añadido al carrito :)')
-  }
-
-}
-
 
 useEffect(()=>{
  setLoader(false)
@@ -63,7 +28,7 @@ useEffect(()=>{
           product.tags.some((tag) => tag.toLowerCase().includes(keyword)) ||
           product.options.some((option) => option.toLowerCase().includes(keyword)) ||
           product.name.toLowerCase().includes(keyword) ||  product.product_category.toLowerCase().includes(keyword) ||  product.sub_category.toLowerCase().includes(keyword) ||
-          product.id === query
+          product.id === query ||  product.id.toLowerCase().includes(keyword)
         ) {
           return acc + 1;
         }

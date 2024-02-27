@@ -7,6 +7,7 @@ import leftLogo from '../assets/left-arrow.png'
 import bigLogo from '../assets/big_logo.png'
 import linkImg from '../assets/link.png'
 import copyImg from '../assets/copy.png'
+import Swal from 'sweetalert2'
 
 function ShowProduct() {
    const {id} = useParams()
@@ -74,21 +75,38 @@ function ShowProduct() {
  const newPrice = calcPrice(parseFloat(price), productType, productWeight, productGain)
 
 
-const handleAddToCart = (p) => {
+ const handleAddToCart = (p) => {
  
   const isProductAdded = cartItems.some(item => item.product_id === p.id && item.options === selectedOption);
   if (isProductAdded) {
-    const confirmed = confirm('Este producto ya está en tu carrito, ¿quieres añadir otro mas?');
-    
-    if (!confirmed) {
-      // El usuario ha cancelado, no hacemos nada
-      alert('No se ha añadido :(')
-      return;
-    }
+    Swal.fire({
+      title: "Este producto ya está en tu carrito, ¿quieres añadir otro mas?",
+      showDenyButton: false,
+      showCancelButton: true,
+      confirmButtonText: "Añadir",
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Excelente!",
+          text: "Se ha añadido al carrito nuevamente :)",
+          icon: "success"
+        });
+      } else if (!result.isConfirmed) {
+       
+        Swal.fire({
+          icon: "error",
+          title: "Transaccion Cancelada",
+          text: "No se añadio el producto al carrito!",
+        });
+        return;
+      }
+      
+    });
 
     // El usuario confirmó, actualizamos la cantidad
     updateCartItemQuantity(p.id, selectedOption, productQuantity);
-    alert('Se ha añadido nuevamente :)')
+
   } else {
     // El producto no está en el carrito, lo añadimos
     addToCart({
@@ -96,14 +114,17 @@ const handleAddToCart = (p) => {
       product_id: p.id,
       name: p.name,
       description: p.description,
-      price:newPrice,
+      price: newPrice,
       URL: p.URL,
       options: selectedOption,
       quantity: productQuantity,
-      product_link: productLink,
-      product_URL : p.product_URL
+      product_link: productLink
     });
-    alert('Se ha añadido al carrito :)')
+    Swal.fire({
+      title: "Excelente!",
+      text: "Se ha añadido al carrito :)",
+      icon: "success"
+    });
   }
 
 }
@@ -128,12 +149,18 @@ const handleIncreaseQuantity = () => {
 }
 
 const handleCopyId = () => {
-  alert('ID copiado :)')
+  Swal.fire({
+    title: "ID Copiado :)",
+    icon: "success"
+  });
   navigator.clipboard.writeText(selectedProduct.id)
 }
 
 const handleCopyURL = () => {
-  alert('Link copiado :)')
+  Swal.fire({
+    title: "LINK Copiado :)",
+    icon: "success"
+  });
   navigator.clipboard.writeText(window.location.href)
 }
 

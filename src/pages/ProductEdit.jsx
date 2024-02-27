@@ -27,7 +27,7 @@ const filteredProducts = findProducts? productsList.map((product) => {
       product.tags.some((tag) => tag.toLowerCase().includes(keyword)) ||
       product.options.some((option) => option.toLowerCase().includes(keyword)) ||
       product.name.toLowerCase().includes(keyword) || 
-      product.id === query
+      product.id === query || product.id.toLowerCase().includes(keyword)
     ) {
       return acc + 1;
     }

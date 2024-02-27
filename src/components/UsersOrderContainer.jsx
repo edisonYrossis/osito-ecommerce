@@ -3,6 +3,7 @@ import { getFirestore, collection, getDocs, deleteDoc, doc } from 'firebase/fire
 import { Link } from 'react-router-dom';  // Si estás utilizando React Router
 import { app } from '../database/config';
 import { dollarToDom } from '../helpers/calculatePrice';
+import Swal from 'sweetalert2';
 // importar otros módulos necesarios
 
 const OrdersList = () => {
@@ -25,23 +26,45 @@ const OrdersList = () => {
       fetchOrders();
   }, []);
 
-  const handleDeleteOrder = async (orderId) => {
+  const handleDeleteOrder = (orderId) => {
     const db = getFirestore();
     const orderDoc = doc(db, 'ordenes', orderId);
-    const isConfirm = confirm('Seguro Quieres Eliminar esta orden? ')
+    
+      Swal.fire({
+        title: "Seguro que quieres eliminar esta orden?",
+        showDenyButton: false,
+        showCancelButton: true,
+        confirmButtonText: "Eliminar",
+      }).then( async (result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          try {
+            await deleteDoc(orderDoc);
+            setOrders((prevOrders) => prevOrders.filter((order) => order.id !== orderId));
+            Swal.fire({
+              title: "Operacion exitosa!",
+              text: "Orden Eliminada!",
+              icon: "success"
+            });
+          } catch (error) {
+            Swal.fire({
+              icon: "error",
+              title: "Ha ocurrido un error",
+              text: error.message,
+            });
+        }} else if (!result.isConfirmed) {
+         
+          Swal.fire({
+            icon: "error",
+            title: "Transaccion Cancelada",
+            text: "No se elimino la orden!",
+          });
+          return;
+        }
+        
+      });
+  
 
-    if(isConfirm){
-         try {
-      await deleteDoc(orderDoc);
-      setOrders((prevOrders) => prevOrders.filter((order) => order.id !== orderId));
-      alert('Orden Eliminada')
-    } catch (error) {
-      console.error('Error deleting order:', error);
-      alert('No se pudo elimnar la orden')
-    }
-    }else{
-        alert('Orden no eliminada')
-    }
   };
 
   useEffect(()=>{

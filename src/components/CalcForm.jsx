@@ -1,13 +1,9 @@
 import { useContext, useEffect, useState } from 'react'
-import {app} from '../database/config'
-import {getFirestore, addDoc, collection, getDocs} from 'firebase/firestore'
-import ProductTags from '../components/ProductTags'
-import ProductOptions from '../components/ProductOptions'
 import { product_weight_list } from '../data/main_p_weight'
-import ProductCard from '../components/ProductCard'
 import {calcPrice, dollarToDom} from '../helpers/calculatePrice'
 import CalcTable from '../others/CalcTable'
 import { productsContext } from '../context/ProductsContext'
+import Swal from 'sweetalert2'
 
 
 
@@ -72,7 +68,11 @@ const handleSubmit = async (e) => {
     e.preventDefault()
    
     if (!product || !price){
-      alert('Hay campos por rellenar :(')
+      Swal.fire({
+        icon: "error",
+        title: "Faltan datos",
+        text: "Hay campos por llenar",
+      });
       return
     }
 
@@ -81,9 +81,18 @@ const handleSubmit = async (e) => {
       name: product,
       price: newPrice,
     }])
-    alert('Producto agregado ;)')
+    Swal.fire({
+      title: "Excelente!",
+      text: "El producto se agrego :)",
+      icon: "success"
+    });
+
    }catch(e){
-alert('No se agrego el producto :(', e.message)
+    Swal.fire({
+      icon: "error",
+      title: "Ocurrio un error",
+      text: "No se pudo agregar el producto :(",
+    });
    }
 }
 
@@ -302,7 +311,11 @@ const newPrice = calcPrice(parseFloat(price), productType, productWeight, produc
             const formattedList = docsList.map(product => `${product.name} ${dollarToDom(product.price)}`).join('\n');
             const finalText = `Lista de productos:\n${formattedList}`;
             navigator.clipboard.writeText(finalText);
- alert('Lista copiada :)');} } className='ml-2 p-1 bg-black text-white text-sm'>Copiar Lista</button>
+            Swal.fire({
+              title: "Excelente!",
+              text: "Lista copiada!",
+              icon: "success"
+            });} } className='ml-2 p-1 bg-black text-white text-sm'>Copiar Lista</button>
                  </section>
         </section>
        

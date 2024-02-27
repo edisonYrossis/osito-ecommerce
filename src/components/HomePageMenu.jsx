@@ -13,8 +13,9 @@ function HomePageMenu({menuVisible, setMenuVisible}) {
   const handleVisitAdmin = () => {
     setClickCount((prevCount) => prevCount + 1);
 
+
     // Verificar si el contador alcanza 10
-    if (clickCount + 1 === 10) {
+    if (clickCount + 1 === 6) {
       // Redirigir al usuario
       navigate('/admin');
     }
@@ -47,7 +48,7 @@ function HomePageMenu({menuVisible, setMenuVisible}) {
             </ul>
             </div>
 
-            <div className=' h-5 pointer-events-none' onClick={handleVisitAdmin}>.....</div>
+            <div className=' h-5 ' onClick={handleVisitAdmin}>.....</div>
            
         </div>
            

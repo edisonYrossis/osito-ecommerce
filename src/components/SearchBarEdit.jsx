@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+
 
 const SearchBar = ({ searchQuery, setQuery, SearchPlaceholder, findProducts, setFindProducts }) => {
 
