@@ -50,7 +50,7 @@ const Contador = ({ fechaInicio }) => {
 
 const DaysCounter = () => {
   // Ingresa la fecha de inicio en formato 'YYYY-MM-DDTHH:mm:ss'
-  const fechaInicio = '2024-02-29T23:59:59';
+  const fechaInicio = '2024-03-02T23:59:59';
 
   return (
     <div className=" text-black p-8 rounded-lg shadow-xl flex justify-center items-center mx-10">

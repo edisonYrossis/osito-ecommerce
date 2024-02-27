@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../css/Backtotop.css'
+import upImg from '../assets/up-arrow.png'
 
 const BacktoTop = () => {
   const [showButton, setShowButton] = useState(false);
@@ -15,7 +16,6 @@ const BacktoTop = () => {
     };
 
     window.addEventListener('scroll', handleScroll);
-
     // Limpia el listener al desmontar el componente
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -39,7 +39,7 @@ const BacktoTop = () => {
           onClick={handleScrollToTop}
           className=" w-auto  h-10 rounded-full backdrop-blur-md text-gray-600 flex justify-end items-center px-2 py-6 shadow-lg relative"
         >
-          <img src='/src/assets/up-arrow.png' className='w-6 h-5 backtotop'/>
+          <img src={upImg} className='w-6 h-5 backtotop'/>
         </button>
       )}        
     </section>
