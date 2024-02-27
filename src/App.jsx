@@ -5,7 +5,7 @@ import {ProductsContextProvider} from './context/ProductsContext.jsx'
 import {BrowserRouter, Route, Routes } from 'react-router-dom'
      const HomePage = lazy(()=> import('./pages/HomePage'))
      const NotFound = lazy(()=> import('./pages/NotFound'))
-    import Admin from './pages/Admin.jsx'
+     const  Admin = lazy (()=> import('./pages/Admin'))
 import { AdminContextProvider } from './context/AdminContext.jsx'
      const  AdminDashboard= lazy (()=> import( './pages/AdminDashboard.jsx'))
      const  ProductForm = lazy (()=> import('./pages/ProductForm.jsx'))
@@ -45,7 +45,8 @@ function App() {
                           <Route path='product/:id' element={<Suspense fallback={ <FaSpinner className="text-xl text-black opacity-80 animate-spin" />}><ShowProductWrapper /></Suspense> }/>
                     
                       
-                      <Route path='/admin' element={<Admin />} />
+                          <Route path='/admin' element={<Suspense fallback={ <FaSpinner className="text-xl text-black opacity-80 animate-spin" />}><Admin /></Suspense> }/>
+                    
                  
                       <Route element={<Suspense fallback={ <FaSpinner className="text-xl text-black opacity-80 animate-spin" />}><ProtectedRoute /></Suspense> } >
                           <Route path='/dashboard/*' element={<AdminDashboard />}>

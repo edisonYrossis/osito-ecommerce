@@ -1,11 +1,24 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
+import React, { useState } from 'react'
+import {Link, useNavigate} from 'react-router-dom'
 import DaysCounter from '../others/DaysCounter'
 import whatsappImg from '../assets/whatsapp.png'
 import instagramImg from '../assets/instagram.png'
 
 
 function HomePageMenu({menuVisible, setMenuVisible}) {
+
+    const [clickCount, setClickCount] = useState(0);
+  const navigate = useNavigate();
+
+  const handleVisitAdmin = () => {
+    setClickCount((prevCount) => prevCount + 1);
+
+    // Verificar si el contador alcanza 10
+    if (clickCount + 1 === 10) {
+      // Redirigir al usuario
+      navigate('/admin');
+    }
+  };
   return (
    <div className={`fixed top-0 h-screen z-50  w-full ${menuVisible? 'visible' : 'hidden'} flex`} >
 
@@ -33,6 +46,8 @@ function HomePageMenu({menuVisible, setMenuVisible}) {
                 <li> <a href="https://wa.me/message/GSYRRK3WBVI6C1" target="_blank" rel="noopener noreferrer" className='w-24 h-24'><img src={whatsappImg} alt="Whatsapp" className='w-12 h-12' /></a>  </li>
             </ul>
             </div>
+
+            <div className=' h-5 pointer-events-none' onClick={handleVisitAdmin}>.....</div>
            
         </div>
            

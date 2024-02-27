@@ -3,6 +3,7 @@ import {UserCartContext} from '../context/UserCartContext'
 import {NavLink, useNavigate} from 'react-router-dom'
 import ProductsCartContainer from '../components/ProductsCartContainer'
 import stuffLogo from '../assets/stuff_logo.png'
+import shoppingBag from '../assets/shopping-bag.png'
 
 function UserCart() {
 
@@ -22,7 +23,7 @@ function UserCart() {
                 <NavLink to='/' className='flex justify-start 'style={{ textDecoration: 'none', textRendering: 'optimizeLegibility' }}>     <img src={stuffLogo}/>  </NavLink></li>
                     <li className='flex flex-grow justify-start '><h1 className='font-bold text-lg'>Tu Orden</h1></li>
                     <li className=' flex justify-start relative '>
-                <img src='src/assets/shopping-bag.png' className='w-10 h-10 '/>  </li>
+                <img src={shoppingBag} className='w-10 h-10 '/>  </li>
                 </ul>
         </section>
 
