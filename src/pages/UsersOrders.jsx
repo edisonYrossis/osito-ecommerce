@@ -3,7 +3,7 @@ import UsersOrderContainer from '../components/UsersOrderContainer'
 
 function UsersOrders() {
   return (
-    <div>
+    <div className='w-full'>
         <UsersOrderContainer />
     </div>
   )

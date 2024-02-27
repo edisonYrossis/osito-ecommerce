@@ -51,11 +51,11 @@ const OrdersList = () => {
   }, [orders])
 
   return orders.length > 0 ? (
-    <div className="max-w-screen-sm mx-auto p-4">
+    <div className="mx-auto p-4 flex flex-col justify-center">
       <h2 className="text-2xl font-bold mb-4">{`Lista de Órdenes(${orders.length})`}</h2>
-      <ul>
+      <ul className='grid grid-cols-1 lg:grid-cols-3 gap-4'>
         {orders.map((order) => (
-          <li key={order.id} className="mb-6 bg-white p-4 rounded-md shadow-md">
+          <li key={order.id} className="mb-6 bg-red-50 p-4 rounded-md shadow-md w-full">
 
 
 <section className='w-full mb-3 text-gray-400 text-xs flex justify-between'>

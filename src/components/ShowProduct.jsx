@@ -4,9 +4,9 @@ import {UserCartContext} from '../context/UserCartContext'
 import {NavLink, useParams} from 'react-router-dom'
 import DownNav from './DownNav'
 import leftLogo from '../assets/left-arrow.png'
-import bigLogo from '../public/big_logo.png'
-import linkImg from '../public/link.png'
-import copyImg from '../public/copy.png'
+import bigLogo from '../assets/big_logo.png'
+import linkImg from '../assets/link.png'
+import copyImg from '../assets/copy.png'
 
 function ShowProduct() {
    const {id} = useParams()
