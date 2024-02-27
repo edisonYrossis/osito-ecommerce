@@ -1,6 +1,7 @@
 import React, { forwardRef, useContext, useRef } from 'react';
 import { dollarToDom } from '../helpers/calculatePrice';
 import { UserCartContext } from '../context/UserCartContext';
+import stuffLogo from '../assets/stuff_logo.png'
 
 const OrderSheet = forwardRef(({confirmOrder, orderID},ref) => {
 
@@ -14,7 +15,7 @@ const OrderSheet = forwardRef(({confirmOrder, orderID},ref) => {
         <section className='flex justify-between items-center'>
 
        <span className='flex items-start -translate-y-1'>
-        <img src="src/assets/stuff_logo.png" alt="Osito Stuff" className='w-32 h-16' /> 
+        <img src={stuffLogo} alt="Osito Stuff" className='w-32 h-16' /> 
         </span>    
 
         <h1 className="text-normal font-bold mb-4">Tu Orden</h1>

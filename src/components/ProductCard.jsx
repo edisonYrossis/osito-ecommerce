@@ -1,8 +1,7 @@
 import '../css/Card.css'
+import addCartImg from '../assets/add-cart.png'
 
-function ProductCard({img, sub_category, name, price, available, description }) {
-  
-  const tag = text => `#${text}`
+function ProductCard({img, price, available, description }) {
 
   return (
     <div className="w-52 rounded-md shadow-2xl relative flex flex-col h-fit overflow-hidden">
@@ -18,7 +17,7 @@ function ProductCard({img, sub_category, name, price, available, description }) 
     </div>
     <div className='w-full flex items-center justify-between px-3 mb-4 mt-2 h-4'>
       <span className='font-semibold font-mono text-base' >{price}</span>
-      <button><img src='src/assets/add-cart.png' className="w-6 h-6" loading="lazy" /></button>
+      <button><img src={addCartImg} className="w-6 h-6" loading="lazy" /></button>
     </div>
   </div>
   )

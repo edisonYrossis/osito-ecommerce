@@ -2,7 +2,8 @@
 import { NavLink } from 'react-router-dom'
 import FilterNav from './FiltersNav'
 import '../css/Nav.css'
-
+import menuImg from '../assets/menu.png'
+import stuffLogo from '../assets/stuff_logo.png'
 function Nav({ searchQuery, setQuery, SearchPlaceholder, setFindProducts, setMenuVisible}) {
  
   const handleSearch = () => {
@@ -30,7 +31,7 @@ function Nav({ searchQuery, setQuery, SearchPlaceholder, setFindProducts, setMen
     <ul className='flex justify-between items-center '>
 
         <li className=' flex justify-start relative logo-container '>
-          <NavLink to='/' className='flex justify-start 'style={{ textDecoration: 'none', textRendering: 'optimizeLegibility' }}>     <img src='src/assets/stuff_logo.png'/>  </NavLink></li>
+          <NavLink to='/' className='flex justify-start 'style={{ textDecoration: 'none', textRendering: 'optimizeLegibility' }}>     <img src={stuffLogo} />  </NavLink></li>
 
           <li className='flex place-content-start flex-grow '>
             <div className='flex w-5/6 md:w-4/6 max-w-96 ' >   
@@ -57,7 +58,7 @@ function Nav({ searchQuery, setQuery, SearchPlaceholder, setFindProducts, setMen
                     </li>
 
 
-                    <li onClick={()=>setMenuVisible(true)}> <img src='src/assets/menu.png' className='w-12 h-12'/>
+                    <li onClick={()=>setMenuVisible(true)}> <img src={menuImg} className='w-12 h-12'/>
                     </li>
 
                 </ul>

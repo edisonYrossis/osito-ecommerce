@@ -3,7 +3,10 @@ import {productsContext} from '../context/ProductsContext'
 import {UserCartContext} from '../context/UserCartContext'
 import {NavLink, useParams} from 'react-router-dom'
 import DownNav from './DownNav'
-
+import leftLogo from '../assets/left-arrow.png'
+import bigLogo from '../public/big_logo.png'
+import linkImg from '../public/link.png'
+import copyImg from '../public/copy.png'
 
 function ShowProduct() {
    const {id} = useParams()
@@ -141,12 +144,12 @@ const handleCopyURL = () => {
     <div className='flex flex-col relative'>
 
       <section className='flex w-full justify-between items-center h-24 px-4' >
-        <NavLink to={'/'} className='flex gap-1 items-center'> <img src="/src/assets/left-arrow.png" alt="atras" className='w-7 h-7'/> atras </NavLink>
+        <NavLink to={'/'} className='flex gap-1 items-center'> <img src={leftLogo} alt="atras" className='w-7 h-7'/> atras </NavLink>
 
 
-        <span className='flex items-center drop-shadow-xl py-1 px-1'> <img src="/public/big_logo.png" alt="left" className='w-32 h-32'/> </span>
+        <span className='flex items-center drop-shadow-xl py-1 px-1'> <img src={bigLogo} alt="left" className='w-32 h-32'/> </span>
 
-        <span className='flex gap-1 items-center text-sm shadow-md rounded-md py-1 px-1' onClick={handleCopyURL}> <img src="/public/link.png" alt="left" className='w-7 h-7'/> Copiar Link</span>
+        <span className='flex gap-1 items-center text-sm shadow-md rounded-md py-1 px-1' onClick={handleCopyURL}> <img src={linkImg} alt="left" className='w-7 h-7'/> Copiar Link</span>
         
         </section>
 
@@ -160,7 +163,7 @@ const handleCopyURL = () => {
         <span className='flex justify-between w-full'>
 
         <h1 className='font-semibold text-2xl mb-1'>{dollarToDom(newPrice)}</h1>
- <span className='flex gap0.5 items-center' onClick={handleCopyId}> <button> <img src="../public/copy.png" alt="copy" className='w-4 h-4 mr-1'/> </button> <h2 className='text-xs'>{selectedProduct.id}</h2></span>
+ <span className='flex gap0.5 items-center' onClick={handleCopyId}> <button> <img src={copyImg} alt="copy" className='w-4 h-4 mr-1'/> </button> <h2 className='text-xs'>{selectedProduct.id}</h2></span>
         </span>
 
 

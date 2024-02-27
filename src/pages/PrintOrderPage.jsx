@@ -5,6 +5,7 @@ import UserOrderForm from '../helpers/UserOrderForm'
 import OrderSheet from '../components/OrderSheet'
 import html2canvas from 'html2canvas';
 import { UserCartContext } from '../context/UserCartContext';
+import  leftImg from '../assets/left-arrow.png'
 
 import { NavLink } from 'react-router-dom';
 
@@ -100,7 +101,7 @@ function PrintOrderPage() {
 <div className='flex w-full mt-40'>
 
 <section className='flex w-full justify-between items-center h-24 px-4' >
-  <NavLink to={'/cart'} className='flex gap-1 items-center'> <img src="/src/assets/left-arrow.png" alt="atras" className='w-7 h-7'/> atras </NavLink>
+  <NavLink to={'/cart'} className='flex gap-1 items-center'> <img src={leftImg} alt="atras" className='w-7 h-7'/> atras </NavLink>
 
 
   <NavLink to={'/'} className='flex items-center drop-shadow-xl py-1 px-1'> <img src="/public/big_logo.png" alt="left" className='w-32 h-32'/> </NavLink>
