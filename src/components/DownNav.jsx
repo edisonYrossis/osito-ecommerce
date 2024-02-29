@@ -12,7 +12,7 @@ const handleClick = ()=> {
 }
 
   return (
-    <div className='fixed bottom-4  w-full flex justify-end z-50 px-4 md:bottom-8 md:right-4'>
+    <div className='fixed bottom-4  w-full flex justify-end z-30 px-4 md:bottom-8 md:right-4'>
         <NavLink to={'/cart'} className=' w-auto  h-10 rounded-full backdrop-blur-xl text-gray-600 flex justify-end items-center px-2 py-6 shadow-xl relative' onClick={handleClick}>
 
         <span><img src={shoppingBag} alt="Cart" className='w-7 h-7' /></span>

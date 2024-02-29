@@ -18,6 +18,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",
+    "react-lazy-load-component": "^1.0.9",
+    "react-lazy-load-image-component": "^1.6.0",
     "react-router-dom": "^6.22.0",
     "react-tagsinput": "^3.20.3",
     "sweetalert2": "^11.10.5",

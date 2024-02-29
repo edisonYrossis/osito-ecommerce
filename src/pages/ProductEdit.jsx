@@ -5,6 +5,8 @@ import {app} from '../database/config'
 import { getFirestore, deleteDoc, doc, collection } from 'firebase/firestore'
 import { deleteObject, ref } from 'firebase/storage';
 import BackToTop from '../others/BacktoTop'
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 
 // Asegúrate de importar tu componente de carga de imágenes si lo necesitas
@@ -13,7 +15,7 @@ const ProductEdit = () => {
 const { productsList, calcPrice , dollarToDom } = useContext(productsContext)
 const [query, setQuery] = useState('')
 const [findProducts, setFindProducts ] = useState(false)
-
+const navigate = useNavigate()
 
 
 const filteredProducts = findProducts? productsList.map((product) => {
@@ -41,47 +43,37 @@ const filteredProducts = findProducts? productsList.map((product) => {
  
 
 
-     const handleDelete = (a) => {
+const handleDelete = async (a) => {
 
-      const deleteProduct = async () => {   
-          const db = getFirestore(app);
-          const collectionRef = collection(db, 'productos');
-          const productRef = doc(collectionRef, a);
-     
-    const product_imgURL = productsList.find(doc => doc.id === a).URL
-
-  if(product_imgURL){
-          const storageRef = ref(app.storage(), product_imgURL);
-
-    // Eliminar el archivo en Firebase Storage
-        await deleteObject(storageRef);
-        alert('imagen eliminada :)')
-  }  // Obtener una referencia al archivo en Firebase Storage
+  const deleteProduct = async () => {   
+      const db = getFirestore(app);
+      const collectionRef = collection(db, 'productos');
+      const productRef = doc(collectionRef, a);
  
+const product_imgURL = productsList.find(doc => doc.id === a).URL
 
-          deleteDoc(productRef)
-           .then(() => {
-             alert('Documento eliminado exitosamente. Recarga la pagina');
-          })
-          .catch((error) => {
-           alert('Error al intentar eliminar el documento:', error.message);
-          });}
+      deleteDoc(productRef)
+       .then(() => {
+         alert('Documento eliminado exitosamente. Recarga la pagina');
+      })
+      .catch((error) => {
+       alert('Error al intentar eliminar el documento:', error.message);
+      });}
 
-          const userPassword = window.prompt('Ingresa contraseña para confirmar la eliminación ;)');
 
-          // Verificar si la contraseña es correcta (puedes compararla con una contraseña predefinida)
-          if (userPassword !== '20051234') {
-            alert('Contraseña incorrecta. Operación cancelada.');
-            return;
-          }
-         
-      const isTrue = confirm('Deseas eliminar para siempre? :(')
-      if (!isTrue) {
-       alert('Operacion cancelada')
-      }
+      // Verificar si la contraseña es correcta (puedes compararla con una contraseña predefinida)
+     
+     
+  const isTrue = confirm('Deseas eliminar para siempre? :(')
+  
+  if(isTrue){
+    deleteProduct()
+  }
+  if (!isTrue) {
+   alert('Operacion cancelada')
+  }
+    }
 
-      deleteProduct()
-        }
 
         const handleEdit = (a) => {
          window.open(`/dashboard/productedit/${a}`, '_blank');

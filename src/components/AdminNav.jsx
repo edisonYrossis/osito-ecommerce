@@ -2,6 +2,7 @@ import {useContext} from 'react'
 import {adminContext} from '../context/AdminContext'
 import { NavLink } from 'react-router-dom'
 import '../css/Nav.css'
+import menuBar from '../assets/menuBar.png'
 
 function Nav({setMenuVisible}) {
 
@@ -19,7 +20,7 @@ function Nav({setMenuVisible}) {
                     </li>
 
 
-                    <li onClick={()=> setMenuVisible(true)} > <img src='/src/assets/menuBar.png' className='w-11 h-11'/>
+                    <li onClick={()=> setMenuVisible(true)} > <img src={menuBar} className='w-11 h-11'/>
                     </li>
 
                 </ul>

@@ -330,7 +330,6 @@ const listFiltered = valuesList.filter( v => v.category === category )
 const newPrice = calcPrice(parseFloat(price), productType, productWeight, productGain)
 
   return (
-
     <>
       <div className={`h-5/6 w-full md:w-3/4 flex md:inline-flex  justify-center items-center `}>
     <div className='w-5/6 h-5/6 shadow-md rounded-md flex flex-col justify-evenly items-center p-1'>

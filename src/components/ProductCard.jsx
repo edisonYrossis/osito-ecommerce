@@ -1,11 +1,15 @@
 import '../css/Card.css'
 import addCartImg from '../assets/add-cart.png'
+import {LazyLoadComponent, LazyLoadImage} from 'react-lazy-load-image-component'
+import smallLogo from '../assets/placeholder-osito.webp'
+
 
 function ProductCard({img, price, available, description }) {
 
   return (
-    <div className="w-52 rounded-md shadow-2xl relative flex flex-col h-fit overflow-hidden">
-    <img src={img} alt="Producto-img" className="w-full skeleton" />
+ <LazyLoadComponent offset={500} >
+     <div className="w-52 rounded-md shadow-2xl relative flex flex-col h-fit overflow-hidden">
+    <LazyLoadImage placeholderSrc={smallLogo} src={img} alt="Producto-img" className="w-full" />
     <div className=" px-3 py-2 overflow-hidden flex justify-start text-left ">
       <div className="font-bold text-base ">{description}</div>
     </div>
@@ -17,9 +21,12 @@ function ProductCard({img, price, available, description }) {
     </div>
     <div className='w-full flex items-center justify-between px-3 mb-4 mt-2 h-4'>
       <span className='font-semibold font-mono text-base' >{price}</span>
-      <button><img src={addCartImg} className="w-6 h-6" loading="lazy" /></button>
+      <button>
+        <img src={addCartImg} className="w-6 h-6"/>
+        </button>
     </div>
   </div>
+ </LazyLoadComponent>
   )
 }
 

@@ -233,8 +233,12 @@ const handleCopyURL = () => {
        
 </div>
 
-<div className='fixed bottom-0 w-full flex justify-start md:w-1/2' onClick={() => handleAddToCart(selectedProduct)} >
-   <button  className='bg-black text-white py-4 px-24 w-4/5'>Add to Cart</button>
+<div className='sticky bottom-0 left-0 w-full flex justify-start md:w-5/6 h-16 z-50'  >
+  <div  className=' text-white h-full w-5/6 flex justify-start items-center'>
+       <button onClick={() => handleAddToCart(selectedProduct)} className='w-full h-full bg-black z-50 cursor-pointer' 
+    >Añadir al carrito</button>
+  </div>
+
 </div>
       
     </div>
