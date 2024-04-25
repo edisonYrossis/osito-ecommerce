@@ -18,7 +18,7 @@ function AdminMenu({menuVisible, setMenuVisible}) {
                 <li className='mb-2'> <Link to={'productedit'}>Buscar/Editar Producto</Link></li>
                 <li className='mb-2'><Link to={'productcalculator'}>Calcular Producto</Link></li>
                 <li className='mb-2'><Link to={'orders'}>Ordenes</Link></li>
-                <li className='mb-2'>Realizar Factura</li>
+                <li className='mb-2'><Link to={'billing'}>Realizar Factura</Link></li>
                 <li className='mb-2'>Realizar Recibo</li>
             </ul>
             </div>

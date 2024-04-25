@@ -1,3 +1,4 @@
+
 import {createContext, useState} from 'react'
 
 export const adminContext = createContext()
@@ -30,6 +31,8 @@ export function AdminContextProvider({children}) {
 
         return !!foundedAdmin
     }
+
+    
     
 
     const val = {
@@ -39,7 +42,7 @@ export function AdminContextProvider({children}) {
         setAdminPass,
         admins,
         isAdmin,
-        isAllowed
+        isAllowed,
     }
 
     return <adminContext.Provider value={val}>

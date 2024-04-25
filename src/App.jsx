@@ -17,6 +17,10 @@ import { AdminContextProvider } from './context/AdminContext.jsx'
 import { UserCartContextProvider } from './context/UserCartContext.jsx'
 import { FaSpinner } from 'react-icons/fa'
 import UsersOrders from './pages/UsersOrders.jsx'
+import BillingPage from './pages/BillingPage.jsx'
+import BillingOrders from './components/BillingOrders.jsx'
+import BillingStreaming from './components/BillingStreaming.jsx'
+import BillingManual from './components/BillingManual.jsx'
 const PrintOrderPage = lazy(()=> import ('./pages/PrintOrderPage.jsx'))
       const ShowProductWrapper = lazy (()=> import('./pages/ShowProductContainer.jsx'))
 
@@ -55,6 +59,11 @@ function App() {
                                 <Route path='productedit' element={<ProductEdit /> }/>
                                 <Route path='productedit/:id' element={<FormEditProduct /> }/>
                                 <Route path='orders' element={<UsersOrders /> }/>
+                                 <Route path='billing/*' element={<BillingPage /> } />
+                                   <Route path='billing/billing-orders' element={<BillingOrders /> }/>
+                                   <Route path='billing/billing-streaming' element={<BillingStreaming /> }/>
+                                   <Route path='billing/billing-manual' element={<BillingManual /> }/>
+                               
                             </Route>
                         </Route> 
                 

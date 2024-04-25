@@ -1,0 +1,98 @@
+.main-billing-div {
+    width: 600px;
+    height: 848.5px;
+    background-color: #fff;
+    position:relative;
+}
+
+.billing-up-figure {
+   position: absolute;
+   top: 0;
+}
+
+.main-logo-osito {
+    position: absolute;
+    top: 0;
+    z-index: 10;
+ }
+
+.billing-down-figure {
+    position: absolute;
+    top: 0;
+}
+
+.bg-osito {
+    position: absolute;
+    top: 0;
+    z-index: 0;
+}
+
+.billing-name{
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    transform: translate(-20px, -110px);
+}
+
+.client-info-container {
+    position: absolute;
+    top: 70px;
+    left: 27px;
+    z-index: 1;
+    width: 350px;
+
+}
+
+
+
+.tables-container {
+    display: flex;
+   align-items: flex-start;
+    flex-direction: column;
+    position: absolute;
+    bottom: 0;
+    transform: translate(5%,-24.5%);
+    color: black;
+    width: 90%;
+    height: 500px;
+}
+
+.fisrt-table-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+    .fisrt-table-container table thead {
+        border-top: 2px solid black;
+        border-bottom: 2px solid black;
+    }
+
+        .fisrt-table-container table thead th{
+            padding: 8px 0 8px 0;
+        }
+
+            .fisrt-table-container table tbody {
+                border-bottom: 2px solid black;
+            }
+
+                .fisrt-table-container table tbody td {
+                padding:12px 0 12px 0 ;
+                }
+
+                    .fisrt-table-container table tbody td[itemtype="subtotal"] {
+                        text-align: center;
+                    }
+
+
+
+
+.second-table-container {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    margin-top: 15px;
+}
